@@ -49,7 +49,9 @@ extern void ADC_LECTURA(int ciclo[3]){
     ciclo[1] = ADC0->SSFIFO1 & 0xFFF;
     ciclo[2] = ADC0->SSFIFO1 & 0xFFF;
 
-    PWM0->_1_CMPA = (int)((1*ciclo[0])/4095)-1;
+    PWM0->_0_CMPA = (int)((1*ciclo[0])/4095)-1;
+    PWM0->_1_CMPA = (int)((1*ciclo[1])/4095)-1;
+    PWM0->_2_CMPA = (int)((1*ciclo[2])/4095)-1;
 
     ADC0->ISC = 0x2;
     ADC1->ISC = 0x4;
