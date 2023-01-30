@@ -1,29 +1,39 @@
 #include "lib/include.h"
 
-int main(void)
+int main(void) //experimento 1
 {
-    uint32_t entrada[1];
+    
+    int ciclo=50; //DUDA
+    int freq_r=50000000;
+    int freq=10000;
 
-    Configurar_PLL(50);  //Confiuracion de velocidad de reloj 50MHZ
+    Configurar_PLL(_50MHZ);  //Confiuracion de velocidad de reloj 50MHZ
     Configurar_GPIO();
     Configurar_UART0();
-    //Configurar_SSI2();
     CONFIGURACION_ADC();
     CONFIGURACION_ADC_Seq();
-    //CONFIGURACION_PWM(int freq, int freq_r, int ciclo);
+    CONFIGURACION_PWM1(freq, freq_r, ciclo);
     
-    //unsigned int entrada_adc;
     while (1){
-        /*ADC0 -> PSSI |= (1<<2) | (1<<1);
-        while ((ADC0 -> RIS & 6) == 0);
-        entrada_adc=ADC0 -> SSFIFO1;
-        ADC0 -> ISC =6;
-        if (entrada_adc >= 2048){
-            GPIOF -> DATA |= (1 << 1); 
-        }
-        else if (entrada_adc < 2048){
-            GPIOF -> DATA &= ~(1 << 1); 
-        }*/
+        
     }
-    }
+}
 
+int main(void) //experimento 2
+{
+    uint32_t entrada[1];
+    uint32_t ciclo[4]; //este depende del adc
+    int freq_r=20000000;
+    int freq=50;
+
+    Configurar_PLL(_20MHZ);  //Confiuracion de velocidad de reloj 50MHZ
+    Configurar_GPIO();
+    Configurar_UART0();
+    CONFIGURACION_ADC();
+    CONFIGURACION_ADC_Seq();
+    CONFIGURACION_PWM2(freq, freq_r, ciclo);
+    
+    while (1){
+        
+    }
+}

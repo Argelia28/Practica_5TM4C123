@@ -40,4 +40,20 @@ extern void CONFIGURACION_ADC_Seq(void){
 
 }
 
+extern void ADC_LECTURA(int ciclo[3]){
+    ADC0 -> PSSI = (1<<1); //Inicializa sec 1
+    ADC1 -> PSSI = (1<<2); //Inicializa sec 2
+
+    while ((ADC0 -> RIS & 0x2)|(ADC1 -> RIS & 0x4)){}; //la muestra completa la conversion
+    ciclo[0] = ADC0->SSFIFO1 & 0xFFF; //resultados
+    ciclo[1] = ADC0->SSFIFO1 & 0xFFF;
+    ciclo[2] = ADC0->SSFIFO1 & 0xFFF;
+
+    PWM0->_1_CMPA = (int)((1*ciclo[0])/4095)-1;
+
+    ADC0->ISC = 0x2;
+    ADC1->ISC = 0x4;
+}
+
+
 
